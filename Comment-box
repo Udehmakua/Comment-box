@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Comment Box</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      margin: 0;
+    }
+  </style>
+</head>
+<body class="bg-gradient-to-br from-gray-50 to-white min-h-screen flex items-center justify-center p-4">
+
+  <div class="w-full max-w-md bg-white shadow-xl rounded-2xl p-6">
+    <h2 class="text-xl font-semibold mb-4 text-gray-800">💬 Leave a Comment</h2>
+    
+    <form id="commentForm" class="space-y-4">
+      <textarea
+        id="commentInput"
+        rows="5"
+        placeholder="Write something amazing..."
+        class="w-full p-4 text-gray-700 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-400 focus:outline-none resize-none"
+        oninput="countWords(this)"
+      ></textarea>
+
+      <div class="flex justify-between items-center text-sm text-gray-500">
+        <span id="wordCount">0 / 100 words</span>
+        <span id="warning" class="text-red-500 hidden">⚠️ Limit reached!</span>
+      </div>
+
+      <button
+        type="submit"
+        class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-6 rounded-lg transition duration-200 shadow-md w-full"
+      >
+        🚀 Post Comment
+      </button>
+    </form>
+  </div>
+
+  <script>
+    function countWords(textarea) {
+      const words = textarea.value.trim().split(/\s+/).filter(Boolean);
+      const wordCount = words.length;
+      const wordLimit = 100;
+
+      document.getElementById("wordCount").textContent = `${wordCount} / ${wordLimit} words`;
+      const warning = document.getElementById("warning");
+
+      if (wordCount > wordLimit) {
+        warning.classList.remove("hidden");
+        textarea.classList.add("border-red-500", "ring-red-300");
+      } else {
+        warning.classList.add("hidden");
+        textarea.classList.remove("border-red-500", "ring-red-300");
+      }
+    }
+
+    document.getElementById("commentForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      const textarea = document.getElementById("commentInput");
+      const words = textarea.value.trim().split(/\s+/).filter(Boolean);
+
+      if (words.length > 100) {
+        alert("Your comment exceeds the 100-word limit.");
+        return;
+      }
+
+      alert("✅ Comment submitted:\n" + textarea.value);
+      textarea.value = "";
+      countWords(textarea);
+    });
+  </script>
+</body>
+</html>
