@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Comment Box</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="comment-container">
+    <h2>💬 Leave a Comment</h2>
+    <form action="https://script.google.com/macros/s/AKfycbzhlsWijAWsWUGcDuX55WpSrszzaiwcDIi7TeTPBdWhFaxPh8oQlP1WIufcH133Xc8KYA/exec" method="POST">
+  <textarea
+    name="comment"
+    rows="5"
+    placeholder="Write something amazing..."
+    required
+  ></textarea>
+
+  <input type="hidden" name="_captcha" value="false">
+  <input type="hidden" name="_next" value="https://yourdomain.com/thank-you.html">
+
+  <div class="info">
+    <span id="wordCount">0 / 100 words</span>
+    <span id="warning" class="warning">⚠️ Limit reached!</span>
+  </div>
+
+  <button type="submit">🚀 Post Comment</button>
+</form>
+
+  <script src="script.js"></script>
+</body>
+</html>
